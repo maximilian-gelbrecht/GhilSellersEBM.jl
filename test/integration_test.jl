@@ -1,4 +1,7 @@
 # test that the EBM integrates to a cold and warm state
+x = (-90.:5.:90.)./90.
+grid = Grid(x)
+p = ContinousGhilSellersParameters(grid);
 
 tspan = (0.,1e9)
 prob = ODEProblem(ghilsellers_ebm!, 220*ones(p.g.N), tspan, p)
