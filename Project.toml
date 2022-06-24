@@ -1,0 +1,13 @@
+name = "GhilSellersEBM"
+uuid = "384e9d69-9817-43fa-841b-44d84745ba4a"
+authors = ["Maximilian Gelbrecht <maximilian.gelbrecht@posteo.de and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1.7"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
