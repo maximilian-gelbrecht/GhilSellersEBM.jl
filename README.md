@@ -14,7 +14,7 @@ The package does not include a solver, it provides everything needed to discreti
 
 Solving the model with two initial conditions: one leading to cold and one to a warm state. 
 
-```julia 
+```julia
 using GhilSellersEBM, DifferentialEquations, Plots 
 
 x = (-90.:5.:90.)./90.
@@ -25,9 +25,14 @@ tspan = (0.,1e9)
 prob = ODEProblem(ghilsellers_ebm!, 220*ones(p.g.N), tspan, p)
 
 sol_1 = solve(prob)
-sol_2 = remake(prob, u0=290*ones(p.g.N))
+sol_2 = solve(remake(prob, u0=290*ones(p.g.N)))
 
-
+t_plot = range(tspan[1],tspan[2],length=200)
+anim = @animate for it ∈ t_plot
+    plot(p.ϕ, sol_1(it), xlabel="Latitude ϕ [rad]", label="Warm State", ylims=[210,300], ylabel="Temperature T [K]", title="Temperature Profile of Ghil Sellers EBM")
+    plot!(p.ϕ, sol_2(it), label="Cold State", ylims=[200,300])
+end 
+gif(anim, "ebm-anim.gif", fps=10)
 ```
 
-![docs/figures/ebm-anim.gif](docs/figures/example_hot_cold.gif)
+![docs/figures/ebm-anim.gif](docs/figures/ebm-anim.gif)
