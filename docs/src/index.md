@@ -9,6 +9,3 @@ Documentation for [GhilSellersEBM](https://github.com/maximilian-gelbrecht/GhilS
 ```@index
 ```
 
-```@autodocs
-Modules = [GhilSellersEBM]
-```

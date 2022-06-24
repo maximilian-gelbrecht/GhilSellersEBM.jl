@@ -1,5 +1,11 @@
 module GhilSellersEBM
 
-# Write your package code here.
+using LinearAlgebra, Interpolations 
+
+include("discretization.jl")
+include("parameters.jl")
+include("model.jl")
+
+export ghilsellers_ebm!, Grid, ContinousGhilSellersParameters
 
 end
