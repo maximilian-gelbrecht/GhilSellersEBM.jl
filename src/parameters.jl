@@ -6,12 +6,13 @@ Uses the tabled values from the Ghil Paper and interpolates on a new grid.
 
 # Initialization
 
-    ContinousGhilSellersParameters(g::Grid)
+    ContinousGhilSellersParameters(g::Grid, μ=1.)
 
 * `g::Grid{T}` 
 * `ϕ::AbstractVector{T}` latitude vector
 * `∂ₓ::NeumannFD{T}` FD scheme
 * `T_0::AbstractVector{T}` initial condition given in the Ghil paper
+* `μ::T` modifier for the incoming solar irradiance
 * `C::AbstractVector{T}` heat capacity
 * `Q::AbstractVector{T}` solar irradiance
 * `b::AbstractVector{T}` empirical albedo coefficient
@@ -32,6 +33,7 @@ Base.@kwdef struct ContinousGhilSellersParameters{T}
     ϕ::AbstractVector{T}
     ∂ₓ::NeumannFD{T}
     T_0::AbstractVector{T}
+    μ::T
     C::AbstractVector{T}
     Q::AbstractVector{T}
     b::AbstractVector{T}
@@ -48,7 +50,7 @@ Base.@kwdef struct ContinousGhilSellersParameters{T}
     T_m::T = 283.16;
 end 
 
-function ContinousGhilSellersParameters(g::Grid)
+function ContinousGhilSellersParameters(g::Grid, μ=1.)
 
     # Input Parameters from Sellers Paper, estimated from observational data for one hemisphere
     colat_1 = (-90.:10.:90.)./90. # used for C,Q,T_0
@@ -104,5 +106,5 @@ function ContinousGhilSellersParameters(g::Grid)
     ϕ = (π.*g.x)./2
     ∂ₓ = NeumannFD(g)
     
-    ContinousGhilSellersParameters(g=g, ϕ=ϕ, ∂ₓ=∂ₓ, T_0=T_0, C=C, Q=Q, b=b, z=z, k_1=k_1, k_2=k_2)
+    ContinousGhilSellersParameters(g=g, ϕ=ϕ, ∂ₓ=∂ₓ, T_0=T_0, μ=μ, C=C, Q=Q, b=b, z=z, k_1=k_1, k_2=k_2)
 end 

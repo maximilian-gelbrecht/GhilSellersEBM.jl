@@ -29,8 +29,8 @@ sol_2 = solve(remake(prob, u0=290*ones(p.g.N)))
 
 t_plot = range(tspan[1],tspan[2],length=200)
 anim = @animate for it ∈ t_plot
-    plot(p.ϕ, sol_1(it), xlabel="Latitude ϕ [rad]", label="Warm State", ylims=[210,300], ylabel="Temperature T [K]", title="Temperature Profile of Ghil Sellers EBM")
-    plot!(p.ϕ, sol_2(it), label="Cold State", ylims=[200,300])
+    plot(p.ϕ, sol_1(it), xlabel="Latitude ϕ [rad]", label="Cold State", ylims=[210,300], ylabel="Temperature T [K]", title="Temperature Profile of Ghil Sellers EBM")
+    plot!(p.ϕ, sol_2(it), label="Warm State", ylims=[200,300])
 end 
 gif(anim, "ebm-anim.gif", fps=10)
 ```
