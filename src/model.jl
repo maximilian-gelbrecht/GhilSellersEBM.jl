@@ -71,7 +71,20 @@ end
 """
     ghilsellers_ebm!(du,u,p,t)   
 
-RHS of the PDE, to be used with `DifferentialEquations.jl`
+RHS of the PDE, to be used with `DifferentialEquations.jl`: `du .= (R_i(u,p) - R_o(u,p) + D(u,p)) ./ p.C`
+
+# Usage 
+
+```julia
+using GhilSellersEBM, DifferentialEquations
+
+x = (-90.:5.:90.)./90.
+grid = Grid(x)
+p = ContinousGhilSellersParameters(grid);
+tspan = (0.,1e9)
+prob = ODEProblem(ghilsellers_ebm!, 280*ones(p.g.N), tspan, p)
+sol = solve(prob)
+````
 """
 function ghilsellers_ebm!(du,u,p,t)   
     du .= (R_i(u,p) - R_o(u,p) + D(u,p)) ./ p.C  

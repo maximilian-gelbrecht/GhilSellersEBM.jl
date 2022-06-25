@@ -11,14 +11,14 @@ What follows is a step by step introduction to the implementation.
 The model is a 1d energy balance model with the basic ansatz:
 
 $$\begin{align} 
-C(x) \frac{\partial T}{\partial t} &= R_{i}(\phi,T) - R_{o}(x,T) + D(x,T,\partial T/\partial x, \partial^2 T/\partial x^2)
+C(x) \frac{\partial T}{\partial t} &= R_{i}(x,T) - R_{o}(x,T) + D(x,T,\partial T/\partial x, \partial^2 T/\partial x^2)
 \end{align}$$ 
 
-where 
-* $x$ is the dimensionless rescaled latitude: $x = 2\phi/\pi$
-* $C(x)$ is the latitude dependent heat capacity 
-* $R_i$ and $R_o$ are the in- and outgoing radiation 
-* $D$ is the 1d diffusion 
+with 
+* the dimensionless rescaled latitude $x = 2\phi/\pi$
+* the latitude dependent heat capacity $C(x)$ 
+* the in- and outgoing radiation  $R_i$ and $R_o$ 
+* the 1d diffusion  $D$ 
 * Neumann boundary conditions $\frac{\partial T}{\partial x}(-1,t) = \frac{\partial T}{\partial x}(1,t) = 0\forall t$ are applied
 
 ## Discretization 

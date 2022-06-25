@@ -42,6 +42,8 @@ end
 
     NeumannFD(grid::Grid{T})
 
+* `grid`: instance of [`Grid`](@ref)
+
 # Usage 
 
 ```julia

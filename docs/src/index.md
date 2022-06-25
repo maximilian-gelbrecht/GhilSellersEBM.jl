@@ -36,8 +36,6 @@ end
 gif(anim, "ebm-anim.gif", fps=10)
 ```
 
-![docs/figures/ebm-anim.gif](docs/figures/ebm-anim.gif)
+![../figures/ebm-anim.gif](../figures/ebm-anim.gif)
 
-```@index
-```
 

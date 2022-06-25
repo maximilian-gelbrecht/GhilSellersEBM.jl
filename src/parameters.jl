@@ -12,7 +12,7 @@ Uses the tabled values from the Ghil Paper and interpolates on a new grid.
 * `ϕ::AbstractVector{T}` latitude vector
 * `∂ₓ::NeumannFD{T}` FD scheme
 * `T_0::AbstractVector{T}` initial condition given in the Ghil paper
-* `μ::T` modifier for the incoming solar irradiance
+* `μ::T` modifier for the incoming solar irradiance, can be used to produce a bifuraction diagram
 * `C::AbstractVector{T}` heat capacity
 * `Q::AbstractVector{T}` solar irradiance
 * `b::AbstractVector{T}` empirical albedo coefficient
