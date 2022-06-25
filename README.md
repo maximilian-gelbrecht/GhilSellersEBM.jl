@@ -21,7 +21,7 @@ x = (-90.:5.:90.)./90.
 grid = Grid(x)
 p = ContinousGhilSellersParameters(grid);
 
-tspan = (0.,1e9)
+tspan = (0.,1e8)
 prob = ODEProblem(ghilsellers_ebm!, 220*ones(p.g.N), tspan, p)
 
 sol_1 = solve(prob)
@@ -35,4 +35,4 @@ end
 gif(anim, "ebm-anim.gif", fps=10)
 ```
 
-![docs/figures/ebm-anim.gif](docs/figures/ebm-anim.gif)
+![docs/src/ebm-anim.gif](docs/src/ebm-anim.gif)

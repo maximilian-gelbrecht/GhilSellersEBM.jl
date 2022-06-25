@@ -1,15 +1,15 @@
 # Reference 
 
 ```@docs
-Grid
-NeumannFD
-ContinousGhilSellersParameters
-R_i
-α
-R_o
-c
-k
-g
-D
-ghilsellers_ebm!    
+GhilSellersEBM.Grid
+GhilSellersEBM.NeumannFD
+GhilSellersEBM.ContinousGhilSellersParameters
+GhilSellersEBM.R_i
+GhilSellersEBM.α
+GhilSellersEBM.R_o
+GhilSellersEBM.c
+GhilSellersEBM.k
+GhilSellersEBM.g
+GhilSellersEBM.D
+GhilSellersEBM.ghilsellers_ebm!    
 ```
