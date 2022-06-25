@@ -134,3 +134,7 @@ function ghilsellers_ebm!(du,u,p,t)
     du .= (R_i(u,p) - R_o(u,p) + D(u,p)) ./ p.C  
 end
 ```
+
+```@docs
+GhilSellersEBM.ghilsellers_ebm!    
+```
