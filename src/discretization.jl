@@ -34,11 +34,12 @@ end
 
 # Initialization
 
-    NeumannFD(T::DataType, n::Integer, Δx::Number=1)
+    NeumannFD(T::DataType, n::Integer, Δx::Number=1, order="4th")
 
 * `T`: precision used (e.g. `Float64`)
 * `n`: number of grid points 
 * `Δx`: spacing between grid points
+* `order`: uses either a '4th'-order scheme or a '2nd'-order scheme, '4th' order scheme uses '2nd' order scheme at the points neighbouring the boundaries
 
     NeumannFD(grid::Grid{T})
 
@@ -56,12 +57,20 @@ struct NeumannFD{T}
     M::AbstractArray{T,2}
 end 
 
-function NeumannFD(T::DataType, n::Integer, Δx::Number=1)
-    M = diagm(-1=>(-1*ones(T, n-1)),1=>ones(T, n-1))
-    M[1,2] = T(0)
-    M[n,n-1] = T(0)
-    M ./= T(2*Δx)
-    NeumannFD(sparse(M))
+function NeumannFD(T::DataType, n::Integer, Δx::Number=1, order="4th")  
+    if order == "2nd"
+        M = diagm(-1=>(-1*ones(T, n-1)),1=>ones(T, n-1))
+        M[1,2] = T(0)
+        M[n,n-1] = T(0)
+        M ./= T(2*Δx)
+        return NeumannFD(sparse(M))
+    else 
+        order == "4th"
+        M = diagm(-1=>[T(-1)/T(2); (-(T(2)/T(3)).*ones(T, n-4)); T(-1)/T(2); T(0)],1=>[T(0); T(1)/T(2); (T(2)/T(3)).*ones(T, n-4); T(1)/T(2)])
+        M += diagm(-2=>[((T(1)/T(12)).*ones(T, n-4)); T(0); T(0)],2=>[T(0); T(0); -(T(1)/T(12)).*ones(T, n-4)])
+        M ./= T(Δx)
+        return NeumannFD(sparse(M))
+    end
 end 
 
 (FD::NeumannFD{T})(x::AbstractVector{T}) where T = FD.M * x
