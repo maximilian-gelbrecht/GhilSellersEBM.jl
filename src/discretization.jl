@@ -61,7 +61,7 @@ function NeumannFD(T::DataType, n::Integer, Δx::Number=1)
     M[1,2] = T(0)
     M[n,n-1] = T(0)
     M ./= T(2*Δx)
-    NeumannFD(M)
+    NeumannFD(sparse(M))
 end 
 
 (FD::NeumannFD{T})(x::AbstractVector{T}) where T = FD.M * x

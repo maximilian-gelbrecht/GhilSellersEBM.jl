@@ -1,6 +1,6 @@
 module GhilSellersEBM
 
-using LinearAlgebra, Interpolations 
+using LinearAlgebra, Interpolations, SparseArrays
 
 include("discretization.jl")
 include("parameters.jl")
