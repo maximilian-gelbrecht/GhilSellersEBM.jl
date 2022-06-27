@@ -8,21 +8,20 @@ R_i(T,p::ContinousGhilSellersParameters) = p.μ .* p.Q .* (1 .- α(T,p))
 """
     α(T,p::ContinousGhilSellersParameters)
 
-Albedo at discretized coordinate `x` and temperature `T`. Albedo is cutoff at minimum 0.25 and maximum 0.85
+Albedo at discretized coordinate `x` and temperature `T`. Albedo is cutoff at minimum 0.25 and maximum α_max
 """
-α(T,p::ContinousGhilSellersParameters) = cutoff_function.(p.b - p.c_1 .* (p.T_m .+ min.(0, T - p.c_2 .* p.z .- p.T_m)))
+α(T,p::ContinousGhilSellersParameters) = cutoff_function.(p.b - p.c_1 .* (p.T_m .+ min.(0, T - p.c_2 .* p.z .- p.T_m)), p.α_max)
 
 
-function cutoff_function(x) 
+function cutoff_function(x, max_val) 
     if x <= 0.25
         return 0.25
-    elseif x >= 0.65 
-        return 0.65
+    elseif x >= max_val
+        return max_val
     else 
         return x
     end 
 end
-
 """
     R_o(T,p::ContinousGhilSellersParameters)
 
