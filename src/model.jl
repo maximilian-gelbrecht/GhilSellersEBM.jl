@@ -3,7 +3,7 @@
 
 Incoming radiation at discretized coordinate `x` and temperature `T` 
 """
-R_i(T,p::ContinousGhilSellersParameters) = p.Q .* (1 .- α(T,p))
+R_i(T,p::ContinousGhilSellersParameters) = p.μ .* p.Q .* (1 .- α(T,p))
 
 """
     α(T,p::ContinousGhilSellersParameters)

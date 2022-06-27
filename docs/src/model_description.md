@@ -53,7 +53,7 @@ ContinousGhilSellersParameters
 * The solar irradiance is also latitude dependend and one of the parameters
 
 $$\begin{align}
-R_i(x,T) = Q(x)(1 - \alpha(x,T))\end{align}$$
+R_i(x,T) = \mu Q(x)(1 - \alpha(x,T))\end{align}$$
 
 * The form of the albedo is emperically found: 
 
@@ -63,6 +63,7 @@ x\quad\text{if }0.25<x<0.65\\   0.65\quad\text{if } x>= 0.65 \end{cases}  \end{a
 
 * It is bound by the cutoff function $\{ x \}_c$ to be at least $0.25$ (so a completely icefree Earth) but at maximum $0.65$ (a completely frozen over Earth). 
 * Ghil and Sellers used a maximum of $0.85$, Bodai et al reported that $0.65$ leads to results that are more in line with more comprehensive models 
+* $\mu$ is an adjustable parameter to produce a modulate the solar irradiance in order to produce a bifurcation diagram. $\mu=1$ corresponds to present day conditions
 
 ```@docs 
 GhilSellersEBM.R_i
