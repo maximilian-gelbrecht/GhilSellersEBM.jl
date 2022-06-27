@@ -50,7 +50,7 @@ Base.@kwdef struct ContinousGhilSellersParameters{T}
     T_m::T = 283.16;
 end 
 
-function ContinousGhilSellersParameters(g::Grid, μ=1.)
+function ContinousGhilSellersParameters(g::Grid, μ=1.; order="2nd")
 
     # Input Parameters from Sellers Paper, estimated from observational data for one hemisphere
     colat_1 = (-90.:10.:90.)./90. # used for C,Q,T_0
@@ -104,7 +104,7 @@ function ContinousGhilSellersParameters(g::Grid, μ=1.)
     k_2 = k_2_int.(g.x)
     
     ϕ = (π.*g.x)./2
-    ∂ₓ = NeumannFD(g)
+    ∂ₓ = NeumannFD(g, order)
     
     ContinousGhilSellersParameters(g=g, ϕ=ϕ, ∂ₓ=∂ₓ, T_0=T_0, μ=μ, C=C, Q=Q, b=b, z=z, k_1=k_1, k_2=k_2)
 end 
