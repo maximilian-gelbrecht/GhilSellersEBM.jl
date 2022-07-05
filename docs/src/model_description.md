@@ -90,7 +90,7 @@ GhilSellersEBM.c
 $$\begin{align} 
 D(x,T) = \left(\frac{2}{\pi}\right)^2 \frac{1}{\cos(\phi(x))}\frac{\partial}{\partial x}\left(\cos(\phi(x))k(x,T) \frac{\partial T}{\partial x}\right)
 \end{align}$$
-### Boundary Conditions
+#### Boundary Conditions
 
 For the diffusion we have to make sure that the Neumann boundary conditions are fullfilled: 
 
@@ -101,8 +101,6 @@ For this purpose we have to rewrite the equation a bit, with $A(x)= ((2/π)^2) *
 $$\begin{align}
 \frac{\partial T}{\partial t} &= R_i(x,T) - R_o(x,T) + A \frac{\partial}{\partial x}\left( B(x,T) \frac{\partial}{\partial x}T\right) \\
 &= R_i(x,T) - R_o(x,T) + A \frac{\partial B}{\partial x}\frac{\partial T}{\partial x} + AB \frac{\partial^2 T}{\partial x^2} \\ 
-& = R_i(x,T) - R_o(x,T) + A \frac{\partial B}{\partial T}\frac{\partial T}{\partial x}\frac{\partial T}{\partial x} + AB \frac{\partial^2 T}{\partial x^2} \\ 
-& = R_i(x,T) - R_o(x,T) + A \frac{\partial B}{\partial T}\left(\frac{\partial T}{\partial x}\right)^2+ AB \frac{\partial^2 T}{\partial x^2} 
 \end{align}$$
 
 Now, we only the only derivatives with respect to $x$ in the equation are $\frac{\partial T}{\partial x}$. So, we can look at the boundary condition: 
@@ -112,7 +110,7 @@ $$\begin{align} \frac{\partial T}{\partial x}(-1,t) &= 0 \\
 
 Let's plug that into the equations above, to get the dynamics for the boundary points: 
 
-$$\begin{align}\frac{\partial T_1}{\partial t} &= R_i(T_1) - R_o(T_1) + A \frac{\partial B}{\partial T} \left(\frac{T_2 - T_0}{2\Delta x}\right)^2 + AB\frac{T_2 - 2T_1 + T_0}{\Delta x^2} \\
+$$\begin{align}\frac{\partial T_1}{\partial t} &= R_i(T_1) - R_o(T_1) + A \frac{\partial B}{\partial x} \left(\frac{T_2 - T_0}{2\Delta x}\right) + AB\frac{T_2 - 2T_1 + T_0}{\Delta x^2} \\
 &= R_i(T_1) - R_o(T_1) + 2AB\frac{T_2 - T_1}{\Delta x^2}\\ 
 \frac{\partial T_N}{\partial t} &= R_i(T_N) - R_o(T_N) + 2AB\frac{T_{N-1} - T_N}{\Delta x^2}\end{align}$$
 
