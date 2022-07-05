@@ -6,6 +6,6 @@ include("discretization.jl")
 include("parameters.jl")
 include("model.jl")
 
-export ghilsellers_ebm!, Grid, ContinousGhilSellersParameters
+export ghilsellers_ebm!, NeumannFD, Grid, ContinousGhilSellersParameters
 
 end
