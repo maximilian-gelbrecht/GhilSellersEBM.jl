@@ -15,16 +15,16 @@ Grid(x::AbstractRange{T})
 * `x`: Coordinate axis
 * `Δx`: Spacing between grid points 
 """
-struct Grid{T}
-N 
-x::AbstractVector{T}
-Δx::T
+struct Grid{T, V<:AbstractVector{T}, I<:Integer}
+    N::I
+    x::V
+    Δx::T
 end 
 
 function Grid(x::AbstractRange{T}) where T
-N = length(x)
-Δx = abs(x[2] - x[1])
-return Grid{T}(N, x, Δx)
+    N = length(x)
+    Δx = abs(x[2] - x[1])
+    return Grid(N, x, Δx)
 end
 
 """
@@ -53,8 +53,8 @@ g = Grid(1:1:10)
 dfdx = ∂ₓ(f)
 ```
 """
-struct NeumannFD{T} 
-    M::AbstractArray{T,2}
+struct NeumannFD{T,A<:AbstractArray{T,2}} 
+    M::A
 end 
 
 function NeumannFD(T::DataType, n::Integer, Δx::Number=1, order="4th")  
@@ -73,6 +73,6 @@ function NeumannFD(T::DataType, n::Integer, Δx::Number=1, order="4th")
     end
 end 
 
-(FD::NeumannFD{T})(x::AbstractVector{T}) where T = FD.M * x
+(FD::NeumannFD{T})(x::V) where {T,V<:AbstractVector{T}} = FD.M * x
 
 NeumannFD(grid::Grid{T}, order="4th") where T = NeumannFD(T, grid.N, grid.Δx, order)
