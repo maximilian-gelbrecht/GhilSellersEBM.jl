@@ -31,18 +31,18 @@ Uses the tabled values from the Ghil Paper and interpolates on a new grid.
 
 * `order` is the order of the finite difference scheme, `2nd` and `4th` are currently supported
 """
-Base.@kwdef struct ContinousGhilSellersParameters{T}
+Base.@kwdef struct ContinousGhilSellersParameters{T, V<:AbstractVector{T}, R<:AbstractVector{T}}
     g::Grid{T}
-    ϕ::AbstractVector{T}
+    ϕ::R
     ∂ₓ::NeumannFD{T}
-    T_0::AbstractVector{T}
+    T_0::V
     μ::T
-    C::AbstractVector{T}
-    Q::AbstractVector{T}
-    b::AbstractVector{T}
-    z::AbstractVector{T}
-    k_1::AbstractVector{T}
-    k_2::AbstractVector{T}
+    C::V
+    Q::V
+    b::V
+    z::V
+    k_1::V
+    k_2::V
     c_1::T = 0.009
     c_2::T = 0.0065
     c_3::T = 1.9e-15
